@@ -157,10 +157,9 @@ def whatsapp():
         menu_image = response.message()
         menu_image.media(MENU_URL)
 
-        response.message(
-            "🍽️ Explore Menu"
+        from_=os.getenv("TWILIO_WHATSAPP_FROM", 
+        to=customer,content_sid=EXPLORE_MENU_SID
         )
-
         return str(response)
 
     # Main categories
