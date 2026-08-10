@@ -156,22 +156,14 @@ def whatsapp():
 
         menu_image = response.message()
         menu_image.media(MENU_URL)
-
-        from_=os.getenv("TWILIO_WHATSAPP_FROM", 
-        to=customer,content_sid=EXPLORE_MENU_SID
+        
+        client.messages.create(
+        from_=os.getenv("TWILIO_WHATSAPP_FROM"),
+            to=customer,
+            content_sid=EXPLORE_MENU_SID
         )
         return str(response)
 
-    # Main categories
-    if selected == "explore_menu":
-
-        client.messages.create(
-        from_=os.getenv("TWILIO_WHATSAPP_FROM"),
-        to=customer,
-        content_sid=EXPLORE_MENU_SID
-    )
-
-    return str(response)
     # Category selected
     if selected in MENU:
 
