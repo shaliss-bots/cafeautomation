@@ -154,11 +154,6 @@ def whatsapp():
      body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
      media_url=[LOGO_URL]
 )
-     client.messages.create(
-      from_=TWILIO_WHATSAPP_FROM,
-      to=customer,
-      media_url=[MENU_URL]
-    )
 
      client.messages.create(
       from_=TWILIO_WHATSAPP_FROM,
