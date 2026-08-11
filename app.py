@@ -3,6 +3,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 import os
 from dotenv import load_dotenv
 from twilio.rest import Client
+import time
 
 app = Flask(__name__)
 load_dotenv()
@@ -154,12 +155,14 @@ def whatsapp():
         body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
         media_url=[LOGO_URL]
     )
+     time.sleep(1)
 
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
         media_url=[MENU_URL]
     )
+     time.sleep(1)
 
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
