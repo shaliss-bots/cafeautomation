@@ -163,7 +163,6 @@ def whatsapp():
             content_sid=EXPLORE_MENU_SID
         )
         return str(response)
-
     # Category selected
     if selected in MENU:
 
