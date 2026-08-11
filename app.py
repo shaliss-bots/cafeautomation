@@ -20,7 +20,7 @@ client = Client(
 
 LOGO_URL = "https://res.cloudinary.com/dd4bsgg46/image/upload/v1768571938/Untitled_design_2_t1kqlx.png" 
 
-MENU_URL = "https://res.cloudinary.com/dd4bsgg46/image/upload/v1786202948/ChatGPT_Image_Aug_8_2026_08_54_57_PM_zonj16.png "
+MENU_URL =  "https://res.cloudinary.com/dd4bsgg46/image/upload/v1786202948/ChatGPT_Image_Aug_8_2026_08_54_57_PM_zonj16.png"
 
 MENU = {
     "coffee": {
@@ -145,23 +145,30 @@ def whatsapp():
 
     response = MessagingResponse()
 
-    # First message
+    # First message 
     if selected in ["hi", "hello", "start"]:
-        
-     client.messages.create(
-     from_=TWILIO_WHATSAPP_FROM,
-     to=customer,
-     body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
-     media_url=[LOGO_URL]
-)
 
      client.messages.create(
-      from_=TWILIO_WHATSAPP_FROM,
-      to=customer,
-      content_sid=EXPLORE_MENU_SID
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
+        media_url=[LOGO_URL]
     )
 
-    return "" 
+     client.messages.create(
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        media_url=[MENU_URL]
+    )
+
+     client.messages.create(
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        content_sid=EXPLORE_MENU_SID
+    )
+
+    return ""
+    
        
     # Category selected
     if selected in MENU:
