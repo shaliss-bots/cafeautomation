@@ -10,7 +10,7 @@ load_dotenv()
 
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-EXPLORE_MENU_SID = os.getenv("EXPLORE_MENU_SID")
+MENU_PREVIEW_SID = os.getenv("MENU_PREVIEW_SID")
 TWILIO_WHATSAPP_FROM = os.getenv("TWILIO_WHATSAPP_FROM")
 MENU_CATEGORIES_SID = os.getenv("MENU_CATEGORIES_SID")
 
@@ -161,17 +161,9 @@ def whatsapp():
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
-        media_url=[MENU_URL]
+        content_sid=MENU_PREVIEW_SID
     )
-     time.sleep(1)
-
-     client.messages.create(
-        from_=TWILIO_WHATSAPP_FROM,
-        to=customer,
-        content_sid=EXPLORE_MENU_SID
-    )
-
-    #return ""
+    return ""
 
     if selected == "explore_menu":
      client.messages.create(
