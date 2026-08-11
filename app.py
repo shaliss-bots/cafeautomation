@@ -147,22 +147,27 @@ def whatsapp():
 
     # First message
     if selected in ["hi", "hello", "start"]:
+     client.messages.create(
+    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
+    to=customer,
+    body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
+    media_url=[LOGO_URL]
+)
 
-        welcome = response.message(
-            "👋 Ji aayan nu Brew Cafe! ☕\n"
-            "Main Shaliss AI haan 🤖"
-        )
-        welcome.media(LOGO_URL)
+     client.messages.create(
+    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
+    to=customer,
+    media_url=[MENU_URL]
+    )
 
-        menu_image = response.message()
-        menu_image.media(MENU_URL)
-        
-        client.messages.create(
-        from_=os.getenv("TWILIO_WHATSAPP_FROM"),
-            to=customer,
-            content_sid=EXPLORE_MENU_SID
-        )
-        return str(response)
+     client.messages.create(
+    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
+    to=customer,
+    content_sid=EXPLORE_MENU_SID
+    )
+
+    return "" 
+       
     # Category selected
     if selected in MENU:
 
