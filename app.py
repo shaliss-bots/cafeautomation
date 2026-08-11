@@ -12,6 +12,7 @@ TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 EXPLORE_MENU_SID = os.getenv("EXPLORE_MENU_SID")
 TWILIO_WHATSAPP_FROM = os.getenv("TWILIO_WHATSAPP_FROM")
+MENU_CATEGORIES_SID = os.getenv("MENU_CATEGORIES_SID")
 
 
 client = Client(
@@ -170,24 +171,15 @@ def whatsapp():
         content_sid=EXPLORE_MENU_SID
     )
 
+    #return ""
+
+    if selected == "explore_menu":
+     client.messages.create(
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        content_sid=MENU_CATEGORIES_SID
+    )
     return ""
-    
-       
-    # Category selected
-    if selected in MENU:
-
-        category = MENU[selected]
-
-        text = category["name"] + "\n\n"
-
-        for item_id, item in category["items"].items():
-            text += f"{item[0]} — ₹{item[1]}\n"
-
-        response.message(
-            text + "\nSelect an item."
-        )
-
-        return str(response)
 
     # Item selected
     item = find_item(selected)
