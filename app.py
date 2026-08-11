@@ -10,7 +10,7 @@ load_dotenv()
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 EXPLORE_MENU_SID = os.getenv("EXPLORE_MENU_SID")
-TWILIO_WHATSAPP_FROM = os.getenv("whatsapp:+9685168546")
+TWILIO_WHATSAPP_FROM = os.getenv("TWILIO_WHATSAPP_FROM")
 
 
 client = Client(
@@ -147,23 +147,23 @@ def whatsapp():
 
     # First message
     if selected in ["hi", "hello", "start"]:
+        
      client.messages.create(
-    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
-    to=customer,
-    body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
-    media_url=[LOGO_URL]
+     from_=TWILIO_WHATSAPP_FROM,
+     to=customer,
+     body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
+     media_url=[LOGO_URL]
 )
-
      client.messages.create(
-    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
-    to=customer,
-    media_url=[MENU_URL]
+      from_=TWILIO_WHATSAPP_FROM,
+      to=customer,
+      media_url=[MENU_URL]
     )
 
      client.messages.create(
-    from_=os.getenv("TWILIO_WHATSAPP_FROM"),
-    to=customer,
-    content_sid=EXPLORE_MENU_SID
+      from_=TWILIO_WHATSAPP_FROM,
+      to=customer,
+      content_sid=EXPLORE_MENU_SID
     )
 
     return "" 
