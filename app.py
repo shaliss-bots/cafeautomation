@@ -137,16 +137,19 @@ def whatsapp():
 
     incoming = request.values.get("Body", "").strip().lower()
 
-    selected = request.values.get(
-        "Buttontext","").strip().lower()
-    
+    selected = (
+    request.values.get("ButtonPayload")
+        or
+    request.values.get("ButtonText")
+    or incoming
+    ).strip().lower()
 
     if customer not in carts:
         carts[customer] = {}
 
     response = MessagingResponse()
     # First message 
-    if selected in ["hi", "hello", "start"]:
+    if selected in ["hi", "hello", "start", "Hello"]:
 
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
@@ -157,7 +160,7 @@ def whatsapp():
     )
     return ""   
 
-    if selected == "ਮੈਨੂ ਵੇਖੋ":
+    if selected in ["explore_menu", "ਮੈਨੂ ਵੇਖੋ"]:
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
