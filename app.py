@@ -138,9 +138,8 @@ def whatsapp():
     incoming = request.values.get("Body", "").strip().lower()
 
     selected = request.values.get(
-        "ButtonPayload",
-        incoming
-    ).strip().lower()
+        "Buttontext","").strip().lower()
+    
 
     if customer not in carts:
         carts[customer] = {}
@@ -158,7 +157,7 @@ def whatsapp():
     )
     return ""   
 
-    if selected == "explore_menu":
+    if selected == "ਮੈਨੂ ਵੇਖੋ":
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
