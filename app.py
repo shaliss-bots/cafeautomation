@@ -146,7 +146,6 @@ def whatsapp():
         carts[customer] = {}
 
     response = MessagingResponse()
-
     # First message 
     if selected in ["hi", "hello", "start"]:
 
