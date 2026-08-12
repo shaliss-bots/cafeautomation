@@ -154,16 +154,10 @@ def whatsapp():
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
         body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
-        media_url=[LOGO_URL]
+        media_url=[LOGO_URL],
+       status_callback= "https://cafeautomation-zucy.onrender.com/logo-status"  
     )
-     time.sleep(1)
-
-     client.messages.create(
-        from_=TWILIO_WHATSAPP_FROM,
-        to=customer,
-        content_sid=MENU_PREVIEW_SID
-    )
-    return ""
+    return ""   
 
     if selected == "explore_menu":
      client.messages.create(
@@ -172,6 +166,21 @@ def whatsapp():
         content_sid=MENU_CATEGORIES_SID
     )
     return ""
+
+@app.route("/logo-status", methods=["POST"])
+def logo_status():
+    status = request.values.get("MessageStatus")
+    customer = request.values.get("To")
+
+    if status == "delivered":
+        client.messages.create(
+            from_=TWILIO_WHATSAPP_FROM,
+            to=customer,
+            content_sid=MENU_PREVIEW_SID
+        )
+
+    return "", 200
+    
 
     # Item selected
     item = find_item(selected)
