@@ -155,7 +155,7 @@ def whatsapp():
     )
     return ""   
 
-    if incoming:
+    if selected == "explore_menu":
      client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
