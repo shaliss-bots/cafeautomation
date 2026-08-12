@@ -155,14 +155,7 @@ def whatsapp():
     )
     return ""   
 
-    if selected == "explore_menu":
-     client.messages.create(
-        from_=TWILIO_WHATSAPP_FROM,
-        to=customer,
-        content_sid=MENU_CATEGORIES_SID
-    )
-    return ""
-
+    
 @app.route("/logo-status", methods=["POST"])
 def logo_status():
     status = request.values.get("MessageStatus")
@@ -174,7 +167,13 @@ def logo_status():
             to=customer,
             content_sid=MENU_PREVIEW_SID
         )
-
+      
+        client.messages.create(
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        content_sid=MENU_CATEGORIES_SID
+    )
+    
     return "", 200
     
 
