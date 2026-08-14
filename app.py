@@ -137,6 +137,7 @@ def whatsapp():
     incoming = request.values.get("Body", "").strip().lower()
 
     selected = request.values.get("ButtonPayload",incoming).strip().lower()
+    print("SELECTED:",selected)
 
     if customer not in carts:
         carts[customer] = {}
