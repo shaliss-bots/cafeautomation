@@ -153,7 +153,6 @@ def whatsapp():
         media_url=[LOGO_URL],
        status_callback= "https://cafeautomation-zucy.onrender.com/logo-status"  
     )
-    return "" , 200 
      
     if selected == "explore_menu":
      try:
