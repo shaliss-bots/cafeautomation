@@ -12,8 +12,7 @@ TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 MENU_PREVIEW_SID = os.getenv("MENU_PREVIEW_SID")
 TWILIO_WHATSAPP_FROM = os.getenv("TWILIO_WHATSAPP_FROM")
-MENU_CATEGORIES_SID = os.getenv("MENU_CATEGORIES_SID")
-
+BREW_CATEGORY_FLOW_SID = os.getenv("BREW_CATEGORY_FLOW_SID")
 
 client = Client(
     TWILIO_ACCOUNT_SID,
@@ -153,7 +152,16 @@ def whatsapp():
         media_url=[LOGO_URL],
        status_callback= "https://cafeautomation-zucy.onrender.com/logo-status"  
     )
-    return ""   
+    return "" , 200 
+     
+    if selected == "explore_menu": 
+     client.messages.create(
+        from_=TWILIO_WHATSAPP_FROM,
+        to=customer,
+        content_sid="BREW_CATEGORY_FLOW_SID"
+    )
+    return "",200
+     
 
     
 @app.route("/logo-status", methods=["POST"])
@@ -168,19 +176,14 @@ def logo_status():
             content_sid=MENU_PREVIEW_SID
         )
       
-        client.messages.create(
-        from_=TWILIO_WHATSAPP_FROM,
-        to=customer,
-        content_sid=MENU_CATEGORIES_SID
-    )
-    
+        
     return "", 200
     
 
     # Item selected
     item = find_item(selected)
 
-    if item:
+    if item:                       
 
         carts[customer]["current_item"] = {
             "id": selected,
