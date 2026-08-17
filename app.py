@@ -166,7 +166,7 @@ def whatsapp():
           print("FLOW ERROR:", str(e))
 
     return "", 200
-     
+    
     
 @app.route("/logo-status", methods=["POST"])
 def logo_status():
