@@ -167,7 +167,6 @@ def whatsapp():
 
     return "", 200
     
-    
 @app.route("/logo-status", methods=["POST"])
 def logo_status():
     status = request.values.get("MessageStatus")
