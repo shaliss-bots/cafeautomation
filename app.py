@@ -167,23 +167,35 @@ def whatsapp():
 
     return "", 200
     
-@app.route("/logo-status", methods=["POST"])
+@app.route("/logo-status", methods=["POST"])   
 def logo_status():
+
     status = request.values.get("MessageStatus")
     customer = request.values.get("To")
+    error_code = request.values.get("ErrorCode")
+    error_message = request.values.get("ChannelStatusMessage")
+
+    print("LOGO STATUS:", status)
+    print("CUSTOMER:", customer)
+    print("ERROR CODE:", error_code)
+    print("ERROR MESSAGE:", error_message)
 
     if status == "delivered":
-        client.messages.create(
-            from_=TWILIO_WHATSAPP_FROM,
-            to=customer,
-            content_sid=MENU_PREVIEW_SID
-        )
-      
-       
-    return "", 200
-    
+        try:
+            msg = client.messages.create(
+                from_=TWILIO_WHATSAPP_FROM,
+                to=customer,
+                content_sid=MENU_PREVIEW_SID
+            )
 
-    # Item selected
+            print("MENU SENT:", msg.sid)
+
+        except Exception as e:
+            print("MENU ERROR:", str(e))
+
+    return "", 200 
+
+     #Item selected 
     item = find_item(selected)
 
     if item:                       
