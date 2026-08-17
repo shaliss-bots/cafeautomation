@@ -146,7 +146,10 @@ def whatsapp():
     # First message 
     if selected in ["hi", "hello", "start", "Hello"]:
 
-     client.messages.create(
+       print("SENDING FROM:", TWILIO_WHATSAPP_FROM)
+       print("SENDING TO:", customer) 
+
+       client.messages.create(
         from_=TWILIO_WHATSAPP_FROM,
         to=customer,
         body="👋 Ji aayan nu Brew Cafe! ☕\nMain Shaliss AI haan 🤖",
