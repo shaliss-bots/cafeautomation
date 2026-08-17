@@ -179,7 +179,7 @@ def logo_status():
             content_sid=MENU_PREVIEW_SID
         )
       
-        
+       
     return "", 200
     
 
